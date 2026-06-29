@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildIt – جمّع جهازك بنفسك</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/builder.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Build<span class="accent">It</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#how">كيف يعمل</a>
+        <a href="#builder">ابدأ التجميع</a>
+        <a href="#service">خدمة التركيب</a>
+      </div>
+      <button class="btn-nav" onclick="scrollToBuilder()">جمّع الآن</button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ خدمة تجميع + توافق فوري</div>
+      <h1 class="hero-title">
+        صمّم جهازك<br />
+        <span class="gradient-text">بدقة مهندس</span>
+      </h1>
+      <p class="hero-sub">
+        اختر قطعك، شوف التوافق لحظياً، واطلب التركيب — كل شيء في مكان واحد.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToBuilder()">
+          <span>ابدأ التجميع</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="scrollTo('how')">كيف يعمل؟</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">١٢٠+</span><span class="stat-label">قطعة متاحة</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">٩٨٪</span><span class="stat-label">توافق دقيق</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">٤٨س</span><span class="stat-label">تسليم التركيب</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="pc-case-visual">
+        <div class="case-glow"></div>
+        <div class="case-body">
+          <div class="case-fan fan-top"></div>
+          <div class="case-components">
+            <div class="comp-slot active" data-label="المعالج"></div>
+            <div class="comp-slot" data-label="الذاكرة"></div>
+            <div class="comp-slot" data-label="GPU"></div>
+            <div class="comp-slot" data-label="التخزين"></div>
+          </div>
+          <div class="case-fan fan-bottom"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-label">الطريقة</div>
+      <h2 class="section-title">ثلاث خطوات وجهازك جاهز</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">🔧</div>
+          <h3>اختر قطعك</h3>
+          <p>تصفّح قائمة القطع المصنّفة وحدد ما يناسب ميزانيتك واحتياجك — الذكاء الاصطناعي يتحقق من التوافق لحظياً.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">✅</div>
+          <h3>تحقق من التوافق</h3>
+          <p>نظام التوافق يفحص socket المعالج، سرعة الرامات، وطاقة مصدر الطاقة — ويُنبّهك قبل أي خطأ.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">🚚</div>
+          <h3>اطلب التركيب</h3>
+          <p>اختر بين شراء القطع وتركيبها بنفسك، أو طلب خدمة التركيب الاحترافي مع ضمان ٩٠ يوم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PC BUILDER ===== -->
+  <section class="builder-section" id="builder">
+    <div class="container">
+      <div class="section-label">أداة التجميع</div>
+      <h2 class="section-title">ابنِ جهازك الآن</h2>
+
+      <!-- Compatibility Bar -->
+      <div class="compat-bar" id="compatBar">
+        <div class="compat-status" id="compatStatus">
+          <span class="compat-dot idle"></span>
+          <span id="compatText">أضف قطعاً لبدء فحص التوافق</span>
+        </div>
+        <div class="compat-summary" id="compatSummary"></div>
+      </div>
+
+      <div class="builder-layout">
+        <!-- Left: Components Panel -->
+        <div class="components-panel">
+          <div class="panel-tabs" id="panelTabs">
+            <button class="tab active" data-cat="cpu">المعالج</button>
+            <button class="tab" data-cat="motherboard">اللوحة</button>
+            <button class="tab" data-cat="ram">الرامات</button>
+            <button class="tab" data-cat="gpu">كرت الشاشة</button>
+            <button class="tab" data-cat="storage">التخزين</button>
+            <button class="tab" data-cat="psu">مصدر الطاقة</button>
+            <button class="tab" data-cat="case">الكيس</button>
+          </div>
+
+          <div class="parts-search">
+            <input type="text" id="searchInput" placeholder="🔍  ابحث عن قطعة..." />
+          </div>
+
+          <div class="parts-list" id="partsList"></div>
+        </div>
+
+        <!-- Right: Build Summary -->
+        <div class="build-summary">
+          <div class="summary-header">
+            <span>تفاصيل الجهاز</span>
+            <button class="btn-clear" onclick="clearBuild()">مسح الكل</button>
+          </div>
+
+          <div class="build-slots" id="buildSlots">
+            <!-- Slots rendered by JS -->
+          </div>
+
+          <!-- Power Meter -->
+          <div class="power-meter">
+            <div class="meter-header">
+              <span>استهلاك الطاقة</span>
+              <span id="powerVal">0W / 0W</span>
+            </div>
+            <div class="meter-track">
+              <div class="meter-fill" id="powerFill" style="width:0%"></div>
+            </div>
+            <span class="meter-note" id="powerNote"></span>
+          </div>
+
+          <!-- Price Summary -->
+          <div class="price-summary">
+            <div class="price-row">
+              <span>سعر القطع</span>
+              <span id="partsPrice">$0</span>
+            </div>
+            <div class="price-row service-row" id="serviceRow" style="display:none">
+              <span>خدمة التركيب</span>
+              <span>$150</span>
+            </div>
+            <div class="price-total">
+              <span>الإجمالي</span>
+              <span id="totalPrice">$0</span>
+            </div>
+          </div>
+
+          <!-- Service Toggle -->
+          <div class="service-toggle">
+            <div class="toggle-card" id="toggleSelf" onclick="setService('self')" class="active">
+              <span class="toggle-icon">🛠️</span>
+              <div>
+                <strong>أركّبه بنفسي</strong>
+                <p>مجاناً</p>
+              </div>
+              <div class="toggle-check" id="checkSelf">✓</div>
+            </div>
+            <div class="toggle-card" id="togglePro" onclick="setService('pro')">
+              <span class="toggle-icon">👨‍🔧</span>
+              <div>
+                <strong>تركيب احترافي</strong>
+                <p>+ $150 · ضمان ٩٠ يوم</p>
+              </div>
+              <div class="toggle-check" id="checkPro"></div>
+            </div>
+          </div>
+
+          <button class="btn-order" id="orderBtn" onclick="submitOrder()" disabled>
+            أكمل الطلب
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICE SECTION ===== -->
+  <section class="service-section" id="service">
+    <div class="container">
+      <div class="section-label">خدمة التركيب</div>
+      <h2 class="section-title">التركيب الاحترافي</h2>
+      <div class="service-grid">
+        <div class="service-card highlight">
+          <div class="service-icon">🔩</div>
+          <h3>تركيب دقيق</h3>
+          <p>نركّب كل قطعة بعناية مع تطبيق المعجون الحراري بالطريقة الصحيحة.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🧪</div>
+          <h3>اختبار شامل</h3>
+          <p>نشغّل اختبارات الضغط والاستقرار قبل التسليم للتأكد من سلامة الجهاز.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>ضمان ٩٠ يوم</h3>
+          <p>أي مشكلة في التركيب خلال ٩٠ يوم، نصلحها مجاناً بدون أسئلة.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚀</div>
+          <h3>تسليم ٤٨ ساعة</h3>
+          <p>نلتزم بتسليم الجهاز مركّباً ومختبراً خلال ٤٨ ساعة من تأكيد الطلب.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORDER MODAL ===== -->
+  <div class="modal-overlay" id="orderModal" style="display:none">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-icon">✅</div>
+      <h2>تم إرسال طلبك!</h2>
+      <p>سنتواصل معك خلال ٢٤ ساعة لتأكيد التفاصيل وترتيب الدفع والتسليم.</p>
+      <div class="order-summary-box" id="orderSummaryBox"></div>
+      <button class="btn-primary" onclick="closeModal()">حسناً، شكراً!</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Build<span class="accent">It</span></span>
+      </div>
+      <p>© ٢٠٢٥ BuildIt · كل الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/compatibility.js"></script>
+  <script src="js/builder.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
